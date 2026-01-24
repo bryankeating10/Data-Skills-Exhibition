@@ -32,5 +32,5 @@ COPY Querying/ Querying/
 # Mount points (volumes at runtime)
 RUN mkdir Data Reports
 
-# Default command
-CMD ["python", "Analysis/main.py"]
+# Test Stockfish installation
+CMD ["stockfish"]
