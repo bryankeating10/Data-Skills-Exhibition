@@ -1,22 +1,22 @@
 FROM python:3.11-slim
 
 # Build arguments
-ARG STOCKFISH_VERSION=17.1
-ARG STOCKFISH_BUILD=linux_x64_avx2
+ARG STOCKFISH_VERSION=latest
+ARG STOCKFISH_BUILD=ubuntu-x86-64-avx2
 
 # System dependencies
 RUN apt-get update && apt-get install -y \
-    wget \
-    unzip \
-    ca-certificates \
+        wget \
+        tar \
+        ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Stockfish
-RUN wget https://stockfishchess.org/files/stockfish_${STOCKFISH_VERSION}_${STOCKFISH_BUILD}.zip && \
-    unzip stockfish_${STOCKFISH_VERSION}_${STOCKFISH_BUILD}.zip && \
-    mv stockfish_${STOCKFISH_VERSION}/stockfish /usr/local/bin/stockfish && \
+# Download and install Stockfish
+RUN wget -O stockfish.tar "https://github.com/official-stockfish/Stockfish/releases/${STOCKFISH_VERSION}/download/stockfish-${STOCKFISH_BUILD}.tar" && \
+    tar -xf stockfish.tar && \
+    mv stockfish /usr/local/bin/stockfish && \
     chmod +x /usr/local/bin/stockfish && \
-    rm -rf stockfish_${STOCKFISH_VERSION}_${STOCKFISH_BUILD}.zip stockfish_${STOCKFISH_VERSION}
+    rm stockfish.tar
 
 # App setup
 WORKDIR /app
@@ -33,4 +33,4 @@ COPY Querying/ Querying/
 RUN mkdir Data Reports
 
 # Default command
-CMD ["python", "Analysis/main.py"]
+CMD ["python", "stockfish"]
