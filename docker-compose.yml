@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  chess:
+    build: .
+    image: chess-performance-analysis
+    volumes:
+      - ./Data:/app/Data:ro
+      - ./Reports:/app/Reports
