@@ -11,6 +11,21 @@ Example contents:
 * CSV exports of move and metadata dataframes
 * DuckDB databases of cleaned metadata and movedata
 This folder is mounted as a volume in Docker
+## Skill Exibition
+### Python
+* Utilizing Python to automate the ingestion, synthesis, and cleaning of data through a web API
+* Demonstrating object oriented programming for data preparation
+* Experience with pandas and NumPy libraries
+### GitHub
+* Using Git version control to organize updates
+* Using GitHub to publish the project and encourage collaboration
+### Docker
+* Using Docker to guaruntee reproducibility
+* Mounting volumes for data persistence
+### SQL
+* Advanced querying techiques to investigate patterns in data
+### Machine Learning
+* Used linear regression to predict favorable areas of improvement
 ## More Information
 ### Stockfish Engine
 This project uses a locked Stockfish version for reproducibility:
