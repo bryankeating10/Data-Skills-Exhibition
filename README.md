@@ -19,6 +19,7 @@ This folder is mounted as a volume in Docker
 ### GitHub
 * Using Git version control to organize updates
 * Using GitHub to publish the project and encourage collaboration
+* Using `git branch` to test functionality and merge features
 ### Docker
 * Using Docker to guaruntee reproducibility
 * Mounting volumes for data persistence
