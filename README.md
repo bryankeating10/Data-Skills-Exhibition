@@ -10,4 +10,10 @@ Example contents:
 * PGN game files (raw data)
 * CSV exports of move and metadata dataframes
 * DuckDB databases of cleaned metadata and movedata
-This folder is mounted as a volume in docker
+This folder is mounted as a volume in Docker
+## More Information
+### Stockfish Engine
+This project uses a locked Stockfish version for reproducibility:
+* Stockfish 17.1 (Linux x64, AVX2 build)
+* Installed at image build time (not user-provided)
+* Fixed engine configuration (threads and hash size)
