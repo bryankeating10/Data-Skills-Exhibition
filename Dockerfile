@@ -1,9 +1,5 @@
 FROM python:3.11-slim
 
-# Build arguments
-ARG STOCKFISH_VERSION=latest
-ARG STOCKFISH_BUILD=ubuntu-x86-64-avx2
-
 # System dependencies
 RUN apt-get update && apt-get install -y \
         wget \
@@ -18,7 +14,6 @@ RUN apt-get update && apt-get install -y wget tar ca-certificates && \
     mv stockfish/stockfish-ubuntu-x86-64-avx2 /usr/local/bin/stockfish && \
     chmod +x /usr/local/bin/stockfish && \
     rm -rf stockfish stockfish-ubuntu-x86-64-avx2.tar
-
 
 # Confirm Stockfish installation
 RUN which stockfish
