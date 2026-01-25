@@ -33,4 +33,4 @@ COPY Querying/ Querying/
 RUN mkdir Data Reports
 
 # Test pgn download on container start
-CMD ["python", "-m","Analysis.test_metadata"]
+CMD ["python", "-m","Analysis.test_movedata"]
