@@ -32,5 +32,5 @@ COPY Querying/ Querying/
 # Mount points (volumes at runtime)
 RUN mkdir Data Reports
 
-# Stockfish test
-CMD ["stockfish"]
+# Test pgn download on container start
+CMD ["python", "-m","Analysis/test_pgn_dl.py"]
