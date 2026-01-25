@@ -3,5 +3,5 @@ services:
     build: .
     image: chess-performance-analysis
     volumes:
-      - ./Data:/app/Data:ro
+      - ./Data:/app/Data
       - ./Reports:/app/Reports
