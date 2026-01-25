@@ -31,6 +31,7 @@ COPY Querying/ Querying/
 
 # Mount points (volumes at runtime)
 RUN mkdir Data Reports
+RUN mkdir -p /app/Data/Bronze /app/Data/Silver /app/Data/Gold
 
 # Test pgn download on container start
-CMD ["python", "-m","Analysis.test_movedata"]
+CMD ["python", "-m","Analysis.test3_movedata"]
