@@ -12,11 +12,16 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install Stockfish
-RUN wget -O stockfish.tar "https://github.com/official-stockfish/Stockfish/releases/${STOCKFISH_VERSION}/download/stockfish-${STOCKFISH_BUILD}.tar" && \
-    tar -xf stockfish.tar && \
-    mv stockfish /usr/local/bin/stockfish && \
+RUN apt-get update && apt-get install -y wget tar ca-certificates && \
+    wget https://github.com/official-stockfish/Stockfish/releases/latest/download/stockfish-ubuntu-x86-64-avx2.tar && \
+    tar -xf stockfish-ubuntu-x86-64-avx2.tar && \
+    mv stockfish/stockfish-ubuntu-x86-64-avx2 /usr/local/bin/stockfish && \
     chmod +x /usr/local/bin/stockfish && \
-    rm stockfish.tar
+    rm -rf stockfish stockfish-ubuntu-x86-64-avx2.tar
+
+
+# Confirm Stockfish installation
+RUN which stockfish
 
 # App setup
 WORKDIR /app
@@ -32,5 +37,5 @@ COPY Querying/ Querying/
 # Mount points (volumes at runtime)
 RUN mkdir Data Reports
 
-# Default command
-CMD ["python", "stockfish"]
+# Stockfish test
+CMD ["stockfish"]
