@@ -19,4 +19,4 @@ bk_meta.save_csv(f'Data/Silver/{trunc_usr}_metadata.csv')
 bk_moves = MoveData(f'Data/Bronze/{trunc_usr}.pgn')
 
 # Save move data to CSV
-bk_moves.save_csv(f'Data/Raw/{trunc_usr}_moves.csv')
+bk_moves.save_csv(f'Data/Silver/{trunc_usr}_moves.csv')
