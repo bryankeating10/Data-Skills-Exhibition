@@ -5,7 +5,7 @@ import numpy as np
 def unique_fens(moves_df):
 
     # Extract unique FENs
-    unique_fen_values = moves_df['fen'].unique()
+    unique_fen_values = moves_df['FEN'].unique()
     
     # Create Series indexed by FEN, initialized with NaN
     # Use dtype=object to accommodate both numeric and string values (mate scores)

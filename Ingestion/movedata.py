@@ -68,12 +68,12 @@ class MoveData:
                     # Store row
                     moves_list.append({
                         "game_id": game_id,
-                        "ply": ply,
-                        "color": color,
-                        "move": san,
-                        "clock": clock,
-                        "eval": eval,
-                        "fen": fen_after,
+                        "Ply": ply,
+                        "Color": color,
+                        "Move": san,
+                        "Clock": clock,
+                        "Eval": eval,
+                        "FEN": fen_after,
                     })
 
                     ply += 1
@@ -86,17 +86,17 @@ class MoveData:
         df = pd.DataFrame(moves_list)
 
         # Sorting ensures stable ordering
-        df.sort_values(by=["game_id", "ply"], inplace=True)
+        df.sort_values(by=["game_id", "Ply"], inplace=True)
 
         # Reorder columns
-        desired_order = ["game_id", "ply", "color", "move", "clock", "eval", "fen"]
+        desired_order = ["game_id", "Ply", "Color", "Move", "Clock", "Eval", "FEN"]
         df = df[desired_order]
 
         return df
 
 
     def save_csv(self, output_path: str) -> None:
-        """Save move data as CSV to Data/Raw directory."""
+        """Save move data as CSV to Data/Silver directory."""
 
         # Persist the move DataFrame to disk
         self.df.to_csv(output_path, index=False)

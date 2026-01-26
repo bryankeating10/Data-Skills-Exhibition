@@ -75,5 +75,5 @@ def add_eval(unique_fen_series: pd.Series, depth: int = 15) -> pd.Series:
 
 # Map evaluations from unique FEN series back to the original moves dataframe.
 def repopulate_unique_evals(moves_df, unique_fen_series):
-    moves_df['eval'] = moves_df['fen'].map(unique_fen_series)
+    moves_df['Eval'] = moves_df['FEN'].map(unique_fen_series)
     return moves_df
