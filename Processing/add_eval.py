@@ -2,8 +2,8 @@ import pandas as pd
 from stockfish import Stockfish
 import chess
 
-# Stockfish path
-STOCK_PATH = r"C:\Tools\stockfish\stockfish-windows-x86-64-avx2.exe"
+# STOCKFISH PATH
+STOCK_PATH = r"/usr/local/bin/stockfish"
 
 # Check if FEN is valid and represents a legal position (including Chess960).
 def is_valid_fen(fen: str) -> bool:
