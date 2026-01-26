@@ -21,8 +21,3 @@ def unique_fens(moves_df):
     print(f"Computational reduction: {100 * (1 - len(unique_fen_series) / len(moves_df)):.2f}%")
     
     return unique_fen_series
-
-# Map evaluations from unique FEN series back to the original moves dataframe.
-def repopulate_unique_evals(moves_df, unique_fen_series):
-    moves_df['eval'] = moves_df['fen'].map(unique_fen_series)
-    return moves_df
