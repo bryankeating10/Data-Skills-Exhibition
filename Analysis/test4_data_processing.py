@@ -14,7 +14,9 @@ from Processing.merge_game_data import merge_data
 
 # USERNAME
 username = 'bkchessmaster2'
-trunc_usr = username.lower()[:8] # Truncate to 8 characters for filename
+
+# Truncate to 8 characters for filenames
+trunc_usr = username.lower()[:8] 
 
 # Download PGN games for user 'bkchessmaster2' from Jan 2026 onwards
 download_pgn(username, start_date='2026-01')
