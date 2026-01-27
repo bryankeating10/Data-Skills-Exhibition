@@ -13,7 +13,7 @@ from Processing.add_eval import add_eval, repopulate_unique_evals as map_evals
 from Processing.merge_game_data import merge_data
 
 # USERNAME
-username = 'bkchessmaster2'
+username = 'stak1'
 
 # Truncate to 8 characters for filenames
 trunc_usr = username.lower()[:8] 
