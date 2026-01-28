@@ -1,11 +1,24 @@
 services:
-  chess:
+  app:
     build: .
     image: chess-performance-analysis
     volumes:
-      - data-volume:/app/Data
-      - reports-volume:/app/Reports
+      - backup-data:/app/Data
+      - reports:/app/Reports
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16
+    container_name: chess-postgres
+    environment:
+      POSTGRES_DB: data-gold
+      POSTGRES_USER: chess_user
+      POSTGRES_PASSWORD: chess_password
+    volumes:
+      - postgres-data-gold:/var/lib/postgresql/data
 
 volumes:
-  data-volume:
-  reports-volume:
+  backup-data:
+  reports:
+  postgres-data-gold:
