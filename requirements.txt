@@ -5,7 +5,11 @@ stockfish==3.28.0
 # Data analysis
 pandas==2.2.0
 pyarrow==15.0
-numpy==1.26.0   
+numpy==1.26.0
+
+# Database interaction
+sqlalchemy==2.1.0b1
+psycopg[binary]==3.3.2
       
 # # Plotting & visualization
 # matplotlib==3.8.0

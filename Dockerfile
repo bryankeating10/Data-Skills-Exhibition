@@ -34,4 +34,4 @@ RUN mkdir Data Reports
 RUN mkdir -p /app/Data/Bronze /app/Data/Silver /app/Data/Gold
 
 # Test pgn download on container start
-CMD ["python", "-m","Analysis.test4_data_processing"]
+CMD ["python", "-m","Analysis.test5_postgres"]
