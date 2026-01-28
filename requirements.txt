@@ -8,8 +8,8 @@ pyarrow==15.0
 numpy==1.26.0
 
 # Database interaction
-sqlalchemy==2.0.x
-psycopg==3.1.x
+sqlalchemy==2.1.0b1
+psycopg[binary]==3.3.2
       
 # # Plotting & visualization
 # matplotlib==3.8.0
