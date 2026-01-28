@@ -12,6 +12,27 @@ from Processing.unique_fen import unique_fens
 from Processing.add_eval import add_eval, repopulate_unique_evals as map_evals
 from Processing.merge_game_data import merge_data
 
+# Import database modules
+from sqlalchemy import create_engine
+from sqlalchemy.exc import SQLAlchemyError
+
+# Connection string for Docker Compose PostgreSQL service
+DATABASE_URL = "postgresql+psycopg://chess_user:chess_password@postgres:5432/data-gold"
+
+# Test Postgres connection
+def test_connection():
+    try:
+        engine = create_engine(DATABASE_URL) # Create engine
+        with engine.connect() as conn:
+            print("✅ Connected to Postgres successfully!")
+
+    except SQLAlchemyError as e:
+        print("❌ Failed to connect to Postgres:")
+        print(e)
+
+if __name__ == "__main__":
+    test_connection()
+
 # USERNAME
 username = 'bkbot33'
 
