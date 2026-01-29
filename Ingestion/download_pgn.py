@@ -61,7 +61,7 @@ def download_pgn(username: str, start_date: str = None, end_date: str = None) ->
     # Save to file
     username = username.lower()[:8] # Truncate to 8 characters for filename
     output_file = output_dir / f"{username}.pgn"
-    content = "\n\n".join(all_pgn).rstrip() + "\n"
+    content = "\n".join(all_pgn).rstrip() + "\n"
     
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(content)
