@@ -33,5 +33,8 @@ COPY Querying/ Querying/
 RUN mkdir Data Reports
 RUN mkdir -p /app/Data/Bronze /app/Data/Silver /app/Data/Gold
 
-# Test pgn download on container start
-CMD ["python", "-m","Analysis.test5_postgres"]
+# Run pipeline on container start
+CMD ["python", "-m","stak1_2025_no_eval"]
+
+# Execute SQL Alchemy commands
+CMD ["python", "m", "alchemy_test"]
