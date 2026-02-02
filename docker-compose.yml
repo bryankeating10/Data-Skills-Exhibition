@@ -7,6 +7,8 @@ services:
       - reports:/app/Reports
     depends_on:
       - postgres
+    environment:
+      DATABASE_URL: postgresql+psycopg2://chess_user:chess_password@postgres:5432/data-gold
 
   postgres:
     image: postgres:16
