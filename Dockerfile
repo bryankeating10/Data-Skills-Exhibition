@@ -34,4 +34,4 @@ RUN mkdir Data Reports
 RUN mkdir -p /app/Data/Bronze /app/Data/Silver /app/Data/Gold
 
 # Run pipeline on container start
-CMD ["python", "-m","stak1_2025_no_eval"]
+CMD ["python", "-m","Analysis.stak1_2025_no_eval"]

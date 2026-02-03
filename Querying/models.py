@@ -12,3 +12,22 @@ class Move(Base):
     clock = Column(String)
     eval = Column(Float)
     fen = Column(String)
+
+
+    white = Column(String)
+    black = Column(String)
+    result = Column(String)
+
+    eco = Column(String)
+    eco_url = Column(String)
+
+    utc_date = Column(String)
+    white_elo = Column(Integer)
+    black_elo = Column(Integer)
+
+    time_control = Column(String)
+    termination = Column(String)
+
+    start_time = Column(String)
+    end_date = Column(String)
+    end_time = Column(String)

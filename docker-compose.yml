@@ -8,7 +8,7 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgresql+psycopg2://chess_user:chess_password@postgres:5432/data-gold
+      DATABASE_URL: postgresql+psycopg://chess_user:chess_password@postgres:5432/data-gold
 
   postgres:
     image: postgres:16
