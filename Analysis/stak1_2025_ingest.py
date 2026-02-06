@@ -1,5 +1,7 @@
 # Import dependencies
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Import ingestion modules
 from Ingestion.download_pgn import download_pgn
@@ -37,26 +39,26 @@ if __name__ == "__main__":
 username = 'stak1'
 
 # Truncate to 8 characters for filenames
-trunc_usr = username.lower()[:8] 
+trun_usr = username.lower()[:8] 
 
 # Download PGN games for user in specified date range
 download_pgn(username, start_date='2025-01', end_date='2025-12')
 
 # Extract metadata from PGN file
-meta_parser = MetaData(f'Data/Bronze/{trunc_usr}.pgn')
+meta_parser = MetaData(f'Data/Bronze/{trun_usr}.pgn')
 
 # Save metadata to CSV
-meta_parser.save_csv(f'Data/Silver/{trunc_usr}_metadata.csv')
+meta_parser.save_csv(f'Data/Silver/{trun_usr}_metadata.csv')
 
 # Extract move data from PGN file
-move_parser = MoveData(f'Data/Bronze/{trunc_usr}.pgn')
+move_parser = MoveData(f'Data/Bronze/{trun_usr}.pgn')
 
 # Save move data to CSV
-move_parser.save_csv(f'Data/Silver/{trunc_usr}_moves.csv')
+move_parser.save_csv(f'Data/Silver/{trun_usr}_moves.csv')
 
 # Clean and save final metadata
 meta_df = remove_unnec(meta_parser.df)
-meta_df.to_csv(f'Data/Gold/{trunc_usr}_meta_gold.csv', index=False)
+meta_df.to_csv(f'Data/Gold/{trun_usr}_meta_gold.csv', index=False)
 
 move_df = move_parser.df
 
@@ -72,8 +74,8 @@ move_df = map_evals(move_df, evaluated_fens)
 """
 
 # Save final move data without evaluations
-move_df.to_csv(f'Data/Gold/{trunc_usr}_moves_gold.csv', index=False)
+move_df.to_csv(f'Data/Gold/{trun_usr}_moves_gold.csv', index=False)
 
 # Merge metadata and move data on 'game_id' and save final game data
 game_data = merge_data(meta_df, move_df)
-game_data.to_csv(f'Data/Gold/{trunc_usr}_game_data_gold.csv', index=False)
+game_data.to_csv(f'Data/Gold/{trun_usr}_game_data_gold.csv', index=False)
