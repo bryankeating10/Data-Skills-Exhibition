@@ -26,4 +26,12 @@ print(game_data['TimeControl'].unique())
 # )
 
 # Describe games by time control
-# print(game_data[game_data['TimeControl'] == BLANK].describe())``
+print("\n📈 Descriptive Statistics for Games by Time Control:")
+print('Rapid:')
+print(game_data[game_data['TimeControl'].isin(['600', '900+10'])].describe())
+
+print('\nBlitz:')
+print(game_data[game_data['TimeControl'].isin(['180+2', '300+2','300+5'])].describe())
+
+print('\nBullet:')
+print(game_data[game_data['TimeControl'].isin(['120+1','60+1'])].describe())
