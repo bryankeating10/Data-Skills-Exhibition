@@ -34,4 +34,4 @@ RUN mkdir Data Reports
 RUN mkdir -p /app/Data/Bronze /app/Data/Silver /app/Data/Gold
 
 # Run pipeline on container start
-CMD ["python", "-m","Analysis.bkchessma_2024p_ingest"]
+CMD ["python", "-m","Analysis.bkchessma_2024p_analysis"]
