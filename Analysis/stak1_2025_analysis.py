@@ -5,7 +5,7 @@ import seaborn as sns
 
 # Load the processed game data
 trun_usr = 'stak1' # Truncated username for file naming
-game_data = pd.read_csv(f'Data/Gold/{trun_usr}_game_data_gold.csv')
+game_data = pd.read_csv(f'Data/Gold/{trun_usr}_meta_gold.csv')
 
 # Display summary statistics of the game data
 print("\n📊 Game Data Summary:")
