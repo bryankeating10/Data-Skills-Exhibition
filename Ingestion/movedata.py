@@ -93,13 +93,3 @@ class MoveData:
         df = df[desired_order]
 
         return df
-
-
-    def save_csv(self, output_path: str) -> None:
-        """Save move data as CSV to Data/Silver directory."""
-
-        # Persist the move DataFrame to disk
-        self.df.to_csv(output_path, index=False)
-
-        # Confirm save location to the user
-        print(f"Saved to {output_path}")

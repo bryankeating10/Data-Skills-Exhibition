@@ -53,12 +53,3 @@ class MetaData:
         df.set_index("game_id", inplace=True)
 
         return df
-    
-    def save_csv(self, output_path: str) -> None:
-        """Save metadata as CSV to Data/Silver directory."""
-        
-        # Persist the metadata DataFrame to disk
-        self.df.to_csv(output_path, index=True)
-
-        # Confirm save location to the user
-        print(f"Saved to {output_path}")
