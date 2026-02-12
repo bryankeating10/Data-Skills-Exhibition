@@ -9,7 +9,6 @@ from Ingestion.metadata import MetaData
 from Ingestion.movedata import MoveData
 
 # Import processing modules
-from Processing.cleanmeta import remove_unnec
 from Processing.unique_fen import unique_fens
 from Processing.add_eval import add_eval, repopulate_unique_evals as map_evals
 from Processing.merge_game_data import merge_data
@@ -48,19 +47,15 @@ download_pgn(username, start_date='2024-01', end_date='2025-12')
 meta_parser = MetaData(f'Data/Bronze/{trun_usr}.pgn')
 
 # Save metadata to CSV
-meta_parser.save_csv(f'Data/Silver/{trun_usr}_metadata.csv')
+meta_df = meta_parser.df
+meta_df.to_csv(f'Data/Gold/{trun_usr}_metadata.csv')
 
 # Extract move data from PGN file
 move_parser = MoveData(f'Data/Bronze/{trun_usr}.pgn')
 
 # Save move data to CSV
-move_parser.save_csv(f'Data/Silver/{trun_usr}_moves.csv')
-
-# Clean and save final metadata
-meta_df = remove_unnec(meta_parser.df)
-meta_df.to_csv(f'Data/Gold/{trun_usr}_meta_gold.csv', index=False)
-
 move_df = move_parser.df
+move_df.to_csv(f'Data/Silver/{trun_usr}_moves.csv')
 
 """
 # Extract unique FENs into a Series to avoid redundant evaluations
