@@ -3,13 +3,13 @@ services:
     image: postgres:16
     container_name: database
     environment:
-      POSTGRES_DB: data-gold
+      POSTGRES_DB: database
       POSTGRES_USER: chessuser
       POSTGRES_PASSWORD: chess
     volumes:
-      - postgres-data-gold:/var/lib/postgresql/data
+      - database-volume:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U chessuser -d data-gold"]
+      test: ["CMD-SHELL", "pg_isready -U chessuser -d database"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -24,9 +24,9 @@ services:
       db:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgresql+psycopg://chessuser:chess@db:5432/data-gold
+      DATABASE_URL: postgresql+psycopg://chessuser:chess@db:5432/database
 
 volumes:
   backup-data:
   reports:
-  postgres-data-gold:
+  database-volume:
