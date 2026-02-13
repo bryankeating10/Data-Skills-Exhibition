@@ -43,7 +43,6 @@ trun_usr = username.lower()[:8]
 # Download PGN games for user in specified date range
 download_pgn(username)#, start_date='2023-01', end_date='2025-12')
 
-"""
 # Extract metadata from PGN file
 meta_parser = MetaData(f'Data/Bronze/{trun_usr}.pgn')
 
@@ -59,7 +58,6 @@ move_df = move_parser.df
 move_df.to_csv(f'Data/Silver/{trun_usr}_moves.csv')
 
 """
-"""
 # Extract unique FENs into a Series to avoid redundant evaluations
 unique_fens = unique_fens(move_df)
 
@@ -69,11 +67,10 @@ evaluated_fens = add_eval(unique_fens, depth=20)
 # Map evaluations back to the original moves dataframe
 move_df = map_evals(move_df, evaluated_fens)
 """
-"""
+
 # Save final move data without evaluations
 move_df.to_csv(f'Data/Gold/{trun_usr}_moves_gold.csv', index=False)
 
 # Merge metadata and move data on 'game_id' and save final game data
 game_data = merge_data(meta_df, move_df)
 game_data.to_csv(f'Data/Gold/{trun_usr}_game_data_gold.csv', index=False)
-"""
