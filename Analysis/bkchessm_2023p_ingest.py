@@ -41,7 +41,7 @@ username = 'bkchessmaster2'
 trun_usr = username.lower()[:8] 
 
 # Download PGN games for user in specified date range
-download_pgn(username, start_date='2023-01', end_date='2025-12')
+download_pgn(username, start_date='2023-01')#, end_date='2025-12')
 
 # Extract metadata from PGN file
 meta_parser = MetaData(f'Data/Bronze/{trun_usr}.pgn')
