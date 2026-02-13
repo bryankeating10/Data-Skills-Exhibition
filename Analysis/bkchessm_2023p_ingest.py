@@ -18,7 +18,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.exc import SQLAlchemyError
 
 # Connection string for Docker Compose PostgreSQL service
-DATABASE_URL = "postgresql+psycopg://chess_user:chess_password@postgres:5432/data-gold"
+DATABASE_URL = "postgresql+psycopg://chessuser:chess@db:5432/database"
 
 # Test Postgres connection
 def test_connection():
