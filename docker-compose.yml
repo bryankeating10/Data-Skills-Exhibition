@@ -33,8 +33,11 @@ services:
 
 volumes:
   backup-data:
+    name: backup-data
   reports:
+    name: reports
   database-volume:
+    name: database-volume
 
 networks:
   chessnet:
