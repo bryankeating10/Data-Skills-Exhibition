@@ -1,6 +1,8 @@
 services:
   db:
     image: postgres:16
+    networks:
+      - chessnet
     container_name: database
     environment:
       POSTGRES_DB: database
@@ -15,7 +17,10 @@ services:
       retries: 5
 
   app:
+    container_name: analysis
     build: .
+    networks:
+      - chessnet
     image: analysis
     volumes:
       - backup-data:/app/Data
@@ -30,3 +35,7 @@ volumes:
   backup-data:
   reports:
   database-volume:
+
+networks:
+  chessnet:
+    name: chessnet
