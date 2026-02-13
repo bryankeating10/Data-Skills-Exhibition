@@ -13,3 +13,13 @@ class Player(Base):
 
 class Game(Base):
     __tablename__ = "game"
+
+    id = Column(Integer, primary_key=True)
+    player_id = Column(Integer, ForeignKey("player.id"),nullable=False)
+
+
+
+    player = relationship("Player", back_populates="games") # player.games returns a list of all games
+    
+
+    
