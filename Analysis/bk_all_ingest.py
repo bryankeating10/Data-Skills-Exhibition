@@ -49,6 +49,8 @@ meta_parser = MetaData(f'Data/Bronze/{trun_usr}.pgn')
 # Save metadata to CSV
 meta_df = meta_parser.df
 meta_df.to_csv(f'Data/Gold/{trun_usr}_metadata.csv')
+print(meta_df.head())
+print()
 
 # Extract move data from PGN file
 move_parser = MoveData(f'Data/Bronze/{trun_usr}.pgn')
@@ -56,6 +58,9 @@ move_parser = MoveData(f'Data/Bronze/{trun_usr}.pgn')
 # Save move data to CSV
 move_df = move_parser.df
 move_df.to_csv(f'Data/Silver/{trun_usr}_moves.csv')
+print('\nMOVEDATA CHECK')
+print(move_df.head())
+print()
 
 """
 # Extract unique FENs into a Series to avoid redundant evaluations
