@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Date, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey, Date, DateTime, Text
 from sqlalchemy.orm import relationship
 from datetime import datetime, UTC
 
@@ -45,8 +45,18 @@ class Game(Base):
     end_time = Column(String)
     timezone = Column(String)
 
-    # Move Data
-    ply = Column(Integer)
-    color = Column(Integer)
+class Move(Base):
+    __tablename__ = "move"
 
-    
+    # Identifier and relationship data
+    id = Column(Integer, primary_key=True)
+    game_id = Column(Integer, ForeignKey("game.id"), nullable=False)
+    game = relationship("Game")
+
+    # Move data
+    ply = Column(Integer)
+    color = Column(String)
+    move = Column(String)
+    clock = Column(String)
+    eval = Column(String)
+    fen = Column(Text)
