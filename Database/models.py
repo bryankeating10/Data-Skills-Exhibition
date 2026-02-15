@@ -75,5 +75,24 @@ class Move(Base):
 class GameDerived(Base):
     __tablename__ = 'game_derived'
 
+    id = Column(Integer, primary_key = True)
+
+    game_id = Column(
+        Integer, 
+        ForeignKey("game.id", ondelete="CASCADE"),
+        nullable=False,
+        unique=True,
+        index=True
+    )
+
+    # Rating
+    elo_diff = Column(Integer)
+
+    # Relationship
+    game = relationship("Game")
+
+
+
+
 class MoveDerived(Base):
     __tablename__ = 'move_derived'
