@@ -7,35 +7,42 @@ from base import Base
 class Player(Base):
     __tablename__ = "player"
 
+    # Identifier data
     id = Column(Integer, primary_key=True)
     username = Column(String, unique=True, nullable=False)
     created_at = Column(DateTime, default=datetime.now(UTC))
 
-    games = relationship("Game", back_populates="player")
+    # Relationship data
+    games = relationship("Game", back_populates="player", cascade="all, delete")
 
 class Game(Base):
     __tablename__ = "game"
 
+    # Identifier data
     id = Column(Integer, primary_key=True)
     game_id = Column(Integer, nullable=False)
-
     player_id = Column(Integer, ForeignKey("player.id"),nullable=False)
+
+    # Relationship data
     player = relationship("Player", back_populates="games")
 
     # Game Metadata
     event = Column(String)
     site = Column(String)
     date = Column(String)
+    variant = Column(String)
+    tournament = Column(String)
     round = Column(String)
     white = Column(String)
     black = Column(String)
-    result = Column(String)
     time_control = Column(String)
+    result = Column(String)
+    termination = Column(String)
+    link = Column(String)
 
-    # Ratings
-    white_elo = Column(Integer)
-    black_elo = Column(Integer)
-    elo_diff = Column(Integer)
+    # Opening classification
+    eco = Column(String)
+    eco_url = Column(String)
 
     # DateTime
     utc_date = Column(String)
@@ -44,6 +51,10 @@ class Game(Base):
     end_date = Column(String)
     end_time = Column(String)
     timezone = Column(String)
+
+    # Ratings
+    white_elo = Column(Integer)
+    black_elo = Column(Integer)
 
 class Move(Base):
     __tablename__ = "move"
@@ -60,3 +71,9 @@ class Move(Base):
     clock = Column(String)
     eval = Column(String)
     fen = Column(Text)
+
+class GameDerived(Base):
+    __tablename__ = 'game_derived'
+
+class MoveDerived(Base):
+    __tablename__ = 'move_derived'
