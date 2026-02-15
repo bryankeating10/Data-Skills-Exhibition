@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Date, DateTime, Text
+from sqlalchemy import Column, Integer, Float, \
+    String, ForeignKey, DateTime, Text
 from sqlalchemy.orm import relationship
 from datetime import datetime, UTC
 
@@ -75,5 +76,38 @@ class Move(Base):
 class GameDerived(Base):
     __tablename__ = 'game_derived'
 
+    id = Column(Integer, primary_key = True)
+
+    game_id = Column(
+        Integer, 
+        ForeignKey("game.id", ondelete="CASCADE"),
+        nullable=False,
+        unique=True,
+        index=True
+    )
+
+    # Rating
+    elo_diff = Column(Integer)
+
+    # Relationship
+    game = relationship("Game")
+
 class MoveDerived(Base):
     __tablename__ = 'move_derived'
+
+    id = Column(Integer,primary_key=True)
+
+    move_id = Column(
+        Integer,
+        ForeignKey("Move.id", ondelete="CASCADE"),
+        nullable=False,
+        unique=True,
+        index=True
+    )
+    
+    # Time
+    move_time_self = Column(Float) # Time since last move played by self
+    reaction_time = Column(Float) # Reaction time to opponent move
+
+    # Relationship
+    move = relationship("Move")
