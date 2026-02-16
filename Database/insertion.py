@@ -100,9 +100,9 @@ def main():
 
     try:
         metadata_df = pd.read_csv(METADATA_PATH)
-        moves_df = pd.read_csv(MOVES_PATH)
+        moves_df = pd.read_csv(MOVEDATA_PATH)
 
-        player = get_or_create_player(session, "bkchessm")
+        player = create_player(session, "bkchessm")
 
         game_id_map = insert_games(session, metadata_df, player.id)
 
