@@ -72,3 +72,25 @@ def insert_games(session, metadata_df, player_id):
     db_games = session.query(Game.id, Game.game_id).filter_by(player_id=player_id).all()
     return {game_id: db_id for db_id, game_id in db_games}
 
+def insert_moves(session, moves_df, game_id_map):
+    moves = []
+
+    for _, row in moves_df.iterrows():
+        db_game_id = game_id_map.get(int(row['game_id']))
+
+        if not db_game_id:
+            continue
+        move = Move(
+            game_id=db_game_id,
+            ply=row.get("Ply"),
+            color=row.get("Color"),
+            move=row.get("Move"),
+            clock=row.get("Clock"),
+            eval=row.get("Eval"),
+            fen=row.get("FEN"),
+        )
+
+        # Add move to moves list
+        moves.append(move)
+
+    session.bulk_save_objects(moves)
