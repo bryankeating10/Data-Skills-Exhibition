@@ -30,4 +30,9 @@ def ingest(username: str, start_date: str, end_date: str):
     backup_dir = PROJECT_ROOT / 'Data' / 'Bronze'
     backup_dir.mkdir(parents=True, exist_ok=True)
 
-    
+    # Archive URLs
+    url = f'https://api.chess.com/pub/player/{username}/games/archives'
+    headers = {'User-Agent': 'Mozilla/5.0 (Chess PGN Downloader)'}
+    response = requests.get(url, headers=headers)
+    archives = response.json()['archives']
+
