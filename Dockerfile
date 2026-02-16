@@ -31,7 +31,7 @@ COPY Querying/ Querying/
 
 # Mount points (volumes at runtime)
 RUN mkdir Data Reports
-RUN mkdir -p /app/Data/Bronze /app/Data/Silver /app/Data/Gold
+RUN mkdir -p /app/Data/PGN /app/Data/Pre-Eval /app/Data/Gold
 
 # Run pipeline on container start
 CMD ["tail", "-f","/dev/null"]
