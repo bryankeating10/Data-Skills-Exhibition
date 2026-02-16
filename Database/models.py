@@ -14,10 +14,10 @@ class Player(Base):
     created_at = Column(DateTime, default=datetime.now(UTC))
 
     # Relationship data
-    games = relationship("Game", back_populates="player", cascade="all, delete")
+    games = relationship("Meta", back_populates="player", cascade="all, delete")
 
-class Game(Base):
-    __tablename__ = "game"
+class Meta(Base):
+    __tablename__ = "meta"
 
     # Identifier data
     id = Column(Integer, primary_key=True)
@@ -25,7 +25,7 @@ class Game(Base):
     player_id = Column(Integer, ForeignKey("player.id"),nullable=False)
 
     # Relationship data
-    player = relationship("Player", back_populates="games")
+    player = relationship("Player", back_populates="meta")
 
     # Game Metadata
     event = Column(String)
@@ -62,8 +62,8 @@ class Move(Base):
 
     # Identifier and relationship data
     id = Column(Integer, primary_key=True)
-    game_id = Column(Integer, ForeignKey("game.id"), nullable=False)
-    game = relationship("Game")
+    game_id = Column(Integer, ForeignKey("meta.id"), nullable=False)
+    meta = relationship("Meta")
 
     # Move data
     ply = Column(Integer)
@@ -73,14 +73,14 @@ class Move(Base):
     eval = Column(String)
     fen = Column(Text)
 
-class GameDerived(Base):
-    __tablename__ = 'game_derived'
+class MetaDerived(Base):
+    __tablename__ = 'meta_derived'
 
     id = Column(Integer, primary_key = True)
 
     game_id = Column(
         Integer, 
-        ForeignKey("game.id", ondelete="CASCADE"),
+        ForeignKey("meta.id", ondelete="CASCADE"),
         nullable=False,
         unique=True,
         index=True
@@ -90,7 +90,7 @@ class GameDerived(Base):
     elo_diff = Column(Integer)
 
     # Relationship
-    game = relationship("Game")
+    meta = relationship("Meta")
 
 class MoveDerived(Base):
     __tablename__ = 'move_derived'
