@@ -33,5 +33,5 @@ COPY Querying/ Querying/
 RUN mkdir Data Reports
 RUN mkdir -p /app/Data/PGN /app/Data/Pre-Eval /app/Data/Gold
 
-# Run pipeline on container start
+# Keep container running
 CMD ["tail", "-f","/dev/null"]
