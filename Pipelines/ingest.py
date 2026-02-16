@@ -39,10 +39,13 @@ def ingest(username: str, start_date: str, end_date: str):
     move_df = move_parser.df
     move_df.to_csv(f'Data/Pre-Eval/{username}.csv')
 
+    return meta_df, move_df
+
 if __name__ == '__main__':
     import sys
     if len(sys.argv) > 1:
         ingest(sys.argv[1])
+        print("\nIngestion for {username} complete.\n")
     else:
         print("Usage: python -m ingest <username> \nor \n" \
         "ingest('bkchessmaster2', start_date='2024-01', end_date='2024-12')")
