@@ -94,3 +94,30 @@ def insert_moves(session, moves_df, game_id_map):
         moves.append(move)
 
     session.bulk_save_objects(moves)
+
+def main():
+    session = SessionLocal()
+
+    try:
+        metadata_df = pd.read_csv(METADATA_PATH)
+        moves_df = pd.read_csv(MOVES_PATH)
+
+        player = get_or_create_player(session, "bkchessm")
+
+        game_id_map = insert_games(session, metadata_df, player.id)
+
+        insert_moves(session, moves_df, game_id_map)
+
+        session.commit()
+        print("✅ Data inserted successfully.")
+
+    except Exception as e:
+        session.rollback()
+        print("❌ Insert failed:", e)
+
+    finally:
+        session.close()
+
+
+if __name__ == "__main__":
+    main()
