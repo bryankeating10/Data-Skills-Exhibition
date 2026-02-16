@@ -1,5 +1,5 @@
 """
-Download PGN games from Chess.com user archives to Data/Bronze/ directory
+Download PGN games from Chess.com user archives to Data/PGN/ directory
 Usage:
     from download_pgn import download_pgn
     download_pgn('bkchessmaster2')
@@ -15,7 +15,7 @@ def download_pgn(username: str, start_date: str = None, end_date: str = None) ->
 
     # Set output directory
     PROJECT_ROOT = Path(__file__).resolve().parents[1]
-    output_dir = PROJECT_ROOT / 'Data' / 'Bronze'
+    output_dir = PROJECT_ROOT / 'Data' / 'PGN'
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Archive URLs
@@ -57,7 +57,6 @@ def download_pgn(username: str, start_date: str = None, end_date: str = None) ->
             all_pgn.append(response.text)
     
     # Save to file
-    username = username.lower()[:8] # Truncate to 8 characters for filename
     output_file = output_dir / f"{username}.pgn"
     content = "\n".join(all_pgn).rstrip() + "\n"
     

@@ -19,51 +19,21 @@ import requests
 from pathlib import Path
 
 # Dependencies
+from Ingestion.download_pgn import download_pgn
 from Ingestion.metadata import MetaData
 from Ingestion.movedata import MoveData
 
 def ingest(username: str, start_date: str, end_date: str):
-    username = username.lower()
 
-    # Set output directory
-    PROJECT_ROOT = Path(__file__).resolve().parents[1]
-    backup_dir = PROJECT_ROOT / 'Data' / 'Bronze'
-    backup_dir.mkdir(parents=True, exist_ok=True)
+    # Download PGN games
+    download_pgn(username, start_date, end_date)
+    pgn_loc = f'Data/PGN/{username}.pgn'
 
-    # Archive URLs
-    url = f'https://api.chess.com/pub/player/{username}/games/archives'
-    headers = {'User-Agent': 'Mozilla/5.0 (Chess PGN Downloader)'}
-    response = requests.get(url, headers=headers)
-    archives = response.json()['archives']
+    # Extract data from PGN file
+    meta_parser = MetaData(pgn_loc)
+    move_parser = MoveData(pgn_loc)
 
-    # Filter by date range if specified
-    if start_date is not None or end_date is not None:
-        filtered_archives = []
-        for archive_url in archives:
-            year, month = archive_url.split('/')[-2:]
-            archive_period = f"{year}-{month}"
-            
-            # Check if within range (inclusive)
-            if start_date is not None and archive_period < start_date:
-                continue
-            if end_date is not None and archive_period > end_date:
-                continue
-            
-            filtered_archives.append(archive_url)
-        
-        archives = filtered_archives
-    
-    # Reverse to get most recent first
-    archives = list(reversed(archives))
+    # Save as backup
+    meta_df = meta_parser.df
+    meta_df.to_csv()
 
-    # Download each month
-    all_pgn = []
-    for i, archive_url in enumerate(archives, 1):
-        month = archive_url.split('/')[-2:]
-        print(f"[{i}/{len(archives)}] Downloading {month[0]}/{month[1]}...")
-        
-        pgn_url = archive_url + "/pgn"
-        response = requests.get(pgn_url, headers=headers)
-        
-        if response.text.strip():
-            all_pgn.append(response.text)
