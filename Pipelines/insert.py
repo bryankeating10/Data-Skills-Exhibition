@@ -1,7 +1,7 @@
 """
 Docstring for Pipelines.insert
 
-Insert data from MetaData and MoveData into Postgres database.
+Insert data from MetaData and MoveData classes into Postgres database.
 
 """
 
