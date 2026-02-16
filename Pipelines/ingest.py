@@ -18,7 +18,7 @@ Output:
 import requests
 from pathlib import Path
 
-# Dependencies
+# Ingestion modules
 from Ingestion.download_pgn import download_pgn
 from Ingestion.metadata import MetaData
 from Ingestion.movedata import MoveData
@@ -39,3 +39,10 @@ def ingest(username: str, start_date: str, end_date: str):
     move_df = move_parser.df
     move_df.to_csv(f'Data/Pre-Eval/{username}.csv')
 
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) > 1:
+        ingest(sys.argv[1])
+    else:
+        print("Usage: python -m ingest <username> \nor \n" \
+        "ingest('bkchessmaster2', start_date='2024-01', end_date='2024-12')")
