@@ -15,8 +15,8 @@ def download_pgn(username: str, start_date: str = None, end_date: str = None) ->
 
     # Set output directory
     PROJECT_ROOT = Path(__file__).resolve().parents[1]
-    backup_dir = PROJECT_ROOT / 'Data' / 'Bronze'
-    backup_dir.mkdir(parents=True, exist_ok=True)
+    output_dir = PROJECT_ROOT / 'Data' / 'Bronze'
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     # Archive URLs
     url = f'https://api.chess.com/pub/player/{username}/games/archives'
