@@ -12,19 +12,18 @@ from pathlib import Path
 
 def download_pgn(username: str, start_date: str = None, end_date: str = None) -> None:
     username = username.lower()
-    
+
     # Set output directory
-    PROJECT_ROOT = Path(__file__).resolve().parents[1] # For files at equal level relative to project root
-    output_dir = PROJECT_ROOT / "Data" / "Bronze"
-    output_dir.mkdir(parents=True, exist_ok=True)
-    
-    # Get archive URLs
-    url = f"https://api.chess.com/pub/player/{username}/games/archives"
-    headers = {"User-Agent": "Mozilla/5.0 (Chess PGN Downloader)"}
-    
+    PROJECT_ROOT = Path(__file__).resolve().parents[1]
+    backup_dir = PROJECT_ROOT / 'Data' / 'Bronze'
+    backup_dir.mkdir(parents=True, exist_ok=True)
+
+    # Archive URLs
+    url = f'https://api.chess.com/pub/player/{username}/games/archives'
+    headers = {'User-Agent': 'Mozilla/5.0 (Chess PGN Downloader)'}
     response = requests.get(url, headers=headers)
     archives = response.json()['archives']
-    
+
     # Filter by date range if specified
     if start_date is not None or end_date is not None:
         filtered_archives = []
@@ -45,9 +44,8 @@ def download_pgn(username: str, start_date: str = None, end_date: str = None) ->
     # Reverse to get most recent first
     archives = list(reversed(archives))
 
-    all_pgn = []
-    
     # Download each month
+    all_pgn = []
     for i, archive_url in enumerate(archives, 1):
         month = archive_url.split('/')[-2:]
         print(f"[{i}/{len(archives)}] Downloading {month[0]}/{month[1]}...")
