@@ -14,8 +14,8 @@ def download_pgn(username: str, start_date: str = None, end_date: str = None) ->
     username = username.lower()
     
     # Set output directory
-    project_root = Path(__file__).resolve().parents[1] # For files at equal level relative to project root
-    output_dir = project_root / "Data" / "Bronze"
+    PROJECT_ROOT = Path(__file__).resolve().parents[1] # For files at equal level relative to project root
+    output_dir = PROJECT_ROOT / "Data" / "Bronze"
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # Get archive URLs
