@@ -55,3 +55,15 @@ def ingest(username: str, start_date: str, end_date: str):
     
     # Reverse to get most recent first
     archives = list(reversed(archives))
+
+    # Download each month
+    all_pgn = []
+    for i, archive_url in enumerate(archives, 1):
+        month = archive_url.split('/')[-2:]
+        print(f"[{i}/{len(archives)}] Downloading {month[0]}/{month[1]}...")
+        
+        pgn_url = archive_url + "/pgn"
+        response = requests.get(pgn_url, headers=headers)
+        
+        if response.text.strip():
+            all_pgn.append(response.text)
