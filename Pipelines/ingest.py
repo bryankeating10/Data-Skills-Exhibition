@@ -14,5 +14,20 @@ Usage:
 Output:
     Populated MetaData and MoveData classes
 """
+# Dependencies
+import requests
+from pathlib import Path
 
-# 
+# Dependencies
+from Ingestion.metadata import MetaData
+from Ingestion.movedata import MoveData
+
+def ingest(username: str, start_date: str, end_date: str):
+    username = username.lower()
+
+    # Set output directory
+    PROJECT_ROOT = Path(__file__).resolve().parents[1]
+    backup_dir = PROJECT_ROOT / 'Data' / 'Bronze'
+    backup_dir.mkdir(parents=True, exist_ok=True)
+
+    
