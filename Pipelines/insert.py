@@ -15,15 +15,19 @@ Output:
 
 # Insertion modules
 from Database.session import SessionLocal
+from Database.init_db import init_db
 from Database.create_player import create_player
 from Database.insert_games import insert_games
 from Database.insert_moves import insert_moves
 
 def insert(meta_df, move_df, username: str):
 
+    # Ensure tables exist
+    init_db()
+
     session = SessionLocal()
     
-    # Create or update player
+    # Create player
     player = create_player(session, username)
 
     # Insert games
