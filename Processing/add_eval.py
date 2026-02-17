@@ -37,11 +37,13 @@ def add_eval(unique_fen_series: pd.Series, depth: int = 15) -> pd.Series:
     
     print(f"Evaluating {total} unique positions at depth {depth}...")
     
+    # Begin timing process
+    start_time = perf_counter()
+    
     # Iterate through the index (FEN strings)
     for i, fen in enumerate(unique_fen_series.index):
         
-        # Begin timing process
-        start_time = perf_counter()
+        
         # Validate FEN first
         if not is_valid_fen(fen):
             print(f"Invalid FEN at position {i}: {fen[:50]}...")
@@ -79,7 +81,7 @@ def add_eval(unique_fen_series: pd.Series, depth: int = 15) -> pd.Series:
         minutes = floor((remaining % 3600) / 60)
 
         if (i + 1) % 25 == 0:
-            print(f"Evaluated {i + 1}/{total} positions... ({invalid_count} invalid)")
+            print(f"/nEvaluated {i + 1}/{total} positions... ({invalid_count} invalid)")
             print(f"Completion: {round((i+1)*100/total,2)}%")
             print(f"ETA: {hours} hours and {minutes} minutes")
             
