@@ -26,12 +26,15 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY Ingestion/ Ingestion/
 COPY Processing/ Processing/
+COPY Database/ Database/
+COPY Pipelines/ Pipelines/
 COPY Analysis/ Analysis/
 COPY Querying/ Querying/
+COPY Testing/ Testing/
 
 # Mount points (volumes at runtime)
 RUN mkdir Data Reports
-RUN mkdir -p /app/Data/PGN /app/Data/Pre-Eval /app/Data/Gold
+RUN mkdir -p /app/Data/PGN /app/Data/PreEval /app/Data/Gold
 
 # Keep container running
 CMD ["tail", "-f","/dev/null"]
