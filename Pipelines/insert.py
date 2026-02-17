@@ -5,7 +5,6 @@ Insert data from MetaData and MoveData classes into Postgres database.
 
 """
 
-
 # Dependencies
 from pathlib import Path
 import pandas as pd
@@ -103,7 +102,7 @@ def insert_moves(session, moves_df, game_id_map):
 
     session.bulk_save_objects(moves)
 
-def main():
+if __name__ == "__main__":
     session = SessionLocal()
 
     try:
@@ -125,7 +124,3 @@ def main():
 
     finally:
         session.close()
-
-
-if __name__ == "__main__":
-    main()
