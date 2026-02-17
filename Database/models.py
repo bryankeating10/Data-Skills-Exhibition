@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, Float, \
 from sqlalchemy.orm import relationship
 from datetime import datetime, UTC
 
-from base import Base
+from Database.base import Base
 
 class Player(Base):
     __tablename__ = "player"
