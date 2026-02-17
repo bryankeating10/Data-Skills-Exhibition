@@ -18,9 +18,10 @@ from Database.models import Move
 def insert_moves(session, moves_df):
     moves = []
 
-    for _, row in moves_df.iterrows():
+    for move_id, row in moves_df.iterrows():
         move = Move(
-            # Identifier
+            # Identifiers
+            move_id=int(move_id),
             game_id=int(row["game_id"]),
 
             # Move data

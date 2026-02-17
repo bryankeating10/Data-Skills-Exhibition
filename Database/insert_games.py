@@ -21,10 +21,10 @@ def insert_games(session, metadata_df, player_id):
     print('COLUMNS')
     print(metadata_df.columns)
 
-    for _, row in metadata_df.iterrows():
+    for game_id, row in metadata_df.iterrows():
         game = Meta(
             # Identifier
-            game_id=int(row["game_id"]),
+            game_id=int(game_id),
             player_id=player_id,
 
             # Metadata
