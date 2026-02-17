@@ -9,7 +9,7 @@ class Player(Base):
     __tablename__ = "player"
 
     # Identifier data
-    id = Column(Integer, primary_key=True)
+    player_id = Column(Integer, primary_key=True)
     username = Column(String, unique=True, nullable=False)
     created_at = Column(DateTime, default=datetime.now(UTC))
 
@@ -20,9 +20,8 @@ class Meta(Base):
     __tablename__ = "meta"
 
     # Identifier data
-    id = Column(Integer, primary_key=True)
     game_id = Column(Integer, nullable=False)
-    player_id = Column(Integer, ForeignKey("player.id"),nullable=False)
+    player_id = Column(Integer, ForeignKey("player.player_id"),nullable=False)
 
     # Relationship data
     player = relationship("Player", back_populates="meta")
@@ -61,7 +60,7 @@ class Move(Base):
     __tablename__ = "move"
 
     # Identifier and relationship data
-    id = Column(Integer, primary_key=True)
+    move_id = Column(Integer, primary_key=True)
     game_id = Column(Integer, ForeignKey("meta.id"), nullable=False)
     meta = relationship("Meta")
 
@@ -76,14 +75,10 @@ class Move(Base):
 class MetaDerived(Base):
     __tablename__ = 'meta_derived'
 
-    id = Column(Integer, primary_key = True)
-
     game_id = Column(
         Integer, 
         ForeignKey("meta.id", ondelete="CASCADE"),
-        nullable=False,
-        unique=True,
-        index=True
+        primary_key=True
     )
 
     # Rating
@@ -95,14 +90,10 @@ class MetaDerived(Base):
 class MoveDerived(Base):
     __tablename__ = 'move_derived'
 
-    id = Column(Integer,primary_key=True)
-
     move_id = Column(
         Integer,
-        ForeignKey("Move.id", ondelete="CASCADE"),
-        nullable=False,
-        unique=True,
-        index=True
+        ForeignKey("Move.move_id", ondelete="CASCADE"),
+        primary_key=True
     )
     
     # Time
