@@ -18,9 +18,6 @@ from Database.models import Meta
 def insert_games(session, metadata_df, player_id):
     games = []
 
-    print('COLUMNS')
-    print(metadata_df.columns)
-
     for game_id, row in metadata_df.iterrows():
         game = Meta(
             # Identifier
