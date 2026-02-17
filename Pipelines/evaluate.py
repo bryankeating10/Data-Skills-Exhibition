@@ -21,10 +21,10 @@ from Processing.unique_fen import unique_fens
 
 def evaluate(move_df, username: str, depth=20):
     # Extract unique FENs into a Series to avoid redundant evaluations
-    unique_fens = unique_fens(move_df)
+    unique = unique_fens(move_df)
 
     # Evaluate unique FENs using Stockfish at desired depth
-    evaluated_fens = add_eval(unique_fens, depth=depth)
+    evaluated_fens = add_eval(unique, depth=depth)
 
     # Map evaluations back to the moves df
     eval_df = repop(move_df, evaluated_fens)
