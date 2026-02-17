@@ -14,9 +14,6 @@ Usage:
 Output:
     Populated MetaData and MoveData classes
 """
-# Dependencies
-import requests
-from pathlib import Path
 
 # Ingestion modules
 from Ingestion.download_pgn import download_pgn
@@ -35,9 +32,9 @@ def ingest(username: str, start_date: str, end_date: str):
 
     # Save as backup
     meta_df = meta_parser.df
-    meta_df.to_csv(f'Data/Gold/{username}.csv')
+    meta_df.to_csv(f'Data/Gold/{username}_meta.csv')
     move_df = move_parser.df
-    move_df.to_csv(f'Data/Pre-Eval/{username}.csv')
+    move_df.to_csv(f'Data/PreEval/{username}.csv')
 
     return meta_df, move_df
 
