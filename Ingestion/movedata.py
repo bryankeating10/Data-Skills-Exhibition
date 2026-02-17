@@ -92,4 +92,7 @@ class MoveData:
         desired_order = ["game_id", "Ply", "Color", "Move", "Clock", "Eval", "FEN"]
         df = df[desired_order]
 
+        # Set index name
+        df.index.name = "move_id"
+
         return df
