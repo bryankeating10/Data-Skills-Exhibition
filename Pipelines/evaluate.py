@@ -32,6 +32,8 @@ def evaluate(move_df, username: str, depth=20):
     # Save as backup
     eval_df.to_csv(f'Data/Gold/{username}_move.csv')
 
+    return eval_df
+
 if __name__ == '__main__':
     import sys
     if len(sys.argv) > 1:
