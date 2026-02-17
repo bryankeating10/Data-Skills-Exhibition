@@ -21,7 +21,7 @@ from Database.insert_moves import insert_moves
 
 def insert(meta_df, move_df, username: str):
 
-    session = SessionLocal
+    session = SessionLocal()
     
     # Create or update player
     player = create_player(session, username)
