@@ -15,4 +15,7 @@ Output:
     Dataframe containing evaluated positions
 """
 
-# 
+# Evaluation modules
+from Processing.add_eval import add_eval, repopulate_unique_evals
+from Processing.unique_fen import unique_fens
+
