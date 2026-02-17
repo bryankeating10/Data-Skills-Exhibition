@@ -1,6 +1,8 @@
 import pandas as pd
 from stockfish import Stockfish
 import chess
+from time import perf_counter
+from math import floor
 
 # STOCKFISH PATH
 STOCK_PATH = r"/usr/local/bin/stockfish"
@@ -38,6 +40,8 @@ def add_eval(unique_fen_series: pd.Series, depth: int = 15) -> pd.Series:
     # Iterate through the index (FEN strings)
     for i, fen in enumerate(unique_fen_series.index):
         
+        # Begin timing process
+        start_time = perf_counter()
         # Validate FEN first
         if not is_valid_fen(fen):
             print(f"Invalid FEN at position {i}: {fen[:50]}...")
@@ -63,9 +67,22 @@ def add_eval(unique_fen_series: pd.Series, depth: int = 15) -> pd.Series:
             print(f"Error at position {i}: {e}")
             unique_fen_series.iloc[i] = None
         
+
         # Progress
-        if (i + 1) % 50 == 0:
+        split_time = perf_counter()
+        elapsed = split_time - start_time
+
+        avg_time = elapsed / (i + 1)
+        remaining = avg_time * (total - (i + 1))
+
+        hours = floor(remaining / 3600)
+        minutes = floor((remaining % 3600) / 60)
+
+        if (i + 1) % 25 == 0:
             print(f"Evaluated {i + 1}/{total} positions... ({invalid_count} invalid)")
+            print(f"Completion: {round((i+1)*100/total),2}%")
+            print(f"ETA: {hours} hours and {minutes} minutes")
+            
     
     print(f"\nCompleted: {total} positions")
     print(f"Successfully evaluated: {evaluated_count}")
