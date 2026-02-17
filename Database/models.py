@@ -92,7 +92,7 @@ class MoveDerived(Base):
 
     move_id = Column(
         Integer,
-        ForeignKey("Move.move_id", ondelete="CASCADE"),
+        ForeignKey("move.move_id", ondelete="CASCADE"),
         primary_key=True
     )
     
