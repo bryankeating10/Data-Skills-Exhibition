@@ -20,7 +20,7 @@ class Meta(Base):
     __tablename__ = "meta"
 
     # Identifier data
-    game_id = Column(Integer, nullable=False)
+    game_id = Column(Integer, primary_key=True)
     player_id = Column(Integer, ForeignKey("player.player_id"),nullable=False)
 
     # Relationship data
