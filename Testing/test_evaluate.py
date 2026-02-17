@@ -3,7 +3,7 @@ from Pipelines.evaluate import evaluate
 
 # USERNAME
 USERNAME = 'bkchessmaster2'
-_, move_df = ingest(USERNAME, start_date='2026-02', end_date='2026-02')
+_, move_df = ingest(USERNAME, start_date='2026-01', end_date='2026-02')
 
 print('PRE-EVALUATION')
 print(move_df.head(7))
