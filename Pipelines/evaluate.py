@@ -30,4 +30,13 @@ def evaluate(move_df, username: str, depth=20):
     eval_df = repop(move_df, evaluated_fens)
 
     # Save as backup
-    eval_df.to_csv(f'Data/Gold/{username}')
+    eval_df.to_csv(f'Data/Gold/{username}_move.csv')
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) > 1:
+        evaluate(sys.argv[1])
+        print("\nEvaluation for {username} complete.\n")
+    else:
+        print("Usage: python -m evaluate <move_df> \nor \n" \
+        "evaluate(move_df, depth=25, username=<username>)")
