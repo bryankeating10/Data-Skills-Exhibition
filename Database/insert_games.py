@@ -13,7 +13,7 @@ Output:
     None
 """
 
-from models import Meta
+from Database.models import Meta
 
 def insert_games(session, metadata_df, player_id):
     games = []

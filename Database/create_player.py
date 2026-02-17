@@ -1,4 +1,4 @@
-from models import Player
+from Database.models import Player
 
 def create_player(session, username:str):
     player = session.query(Player).filter_by(username=username).first()

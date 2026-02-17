@@ -13,9 +13,9 @@ Output:
     None
 """
 
-from models import Move
+from Database.models import Move
 
-def insert_moves(session, moves_df, game_id_map):
+def insert_moves(session, moves_df):
     moves = []
 
     for _, row in moves_df.iterrows():
