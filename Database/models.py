@@ -14,7 +14,7 @@ class Player(Base):
     created_at = Column(DateTime, default=datetime.now(UTC))
 
     # Relationship data
-    games = relationship("Meta", back_populates="player", cascade="all, delete")
+    meta = relationship("Meta", back_populates="player", cascade="all, delete")
 
 class Meta(Base):
     __tablename__ = "meta"
@@ -61,7 +61,7 @@ class Move(Base):
 
     # Identifier and relationship data
     move_id = Column(Integer, primary_key=True)
-    game_id = Column(Integer, ForeignKey("meta.id"), nullable=False)
+    game_id = Column(Integer, ForeignKey("meta.game_id"), nullable=False)
     meta = relationship("Meta")
 
     # Move data
@@ -77,7 +77,7 @@ class MetaDerived(Base):
 
     game_id = Column(
         Integer, 
-        ForeignKey("meta.id", ondelete="CASCADE"),
+        ForeignKey("meta.game_id", ondelete="CASCADE"),
         primary_key=True
     )
 
