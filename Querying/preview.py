@@ -27,5 +27,21 @@ def preview_players(session):
             f"Created: {player.created_at}"
         )
 
+def preview_games(session):
+    stmt = select(Meta)
+    games = session.scalars(stmt).all()
+
+    for game in games:
+        print(
+            f'ID: {game.game_id} | '
+            f'Between {game.white} and {game.black} | ' 
+        )
+
+
+
+def main():
+    with SessionLocal() as session:
+        preview_players(session)
+
 if __name__ == '__main__':
     main()
