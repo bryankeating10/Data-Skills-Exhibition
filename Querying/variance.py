@@ -8,3 +8,6 @@ def unique_time_controls():
         result = session.execute(stmt)
         return result.scalars().all()
     
+if __name__ == '__main__':
+    time_controls = unique_time_controls()
+    print(time_controls)
