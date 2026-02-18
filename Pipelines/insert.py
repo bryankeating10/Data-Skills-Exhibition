@@ -38,4 +38,5 @@ def insert(meta_df, move_df, username: str):
 
     session.commit()
     session.close()
+    
     print("✅ Data inserted successfully.")

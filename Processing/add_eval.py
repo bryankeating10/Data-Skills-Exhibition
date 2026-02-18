@@ -81,7 +81,7 @@ def add_eval(unique_fen_series: pd.Series, depth: int = 15) -> pd.Series:
         minutes = floor((remaining % 3600) / 60)
 
         if (i + 1) % 25 == 0:
-            print(f"/nEvaluated {i + 1}/{total} positions... ({invalid_count} invalid)")
+            print(f"\nEvaluated {i + 1}/{total} positions... ({invalid_count} invalid)")
             print(f"Completion: {round((i+1)*100/total,2)}%")
             print(f"ETA: {hours} hours and {minutes} minutes")
             
