@@ -37,11 +37,37 @@ def preview_games(session):
             f'Between {game.white} and {game.black} | ' 
         )
 
+def preview_moves(session, game_id, limit=10):
+    print(f"\n--- First {limit} Moves for Game {game_id} ---")
 
+    stmt = (
+        select(Move)
+        .where(Move.game_id == game_id)
+        .order_by(Move.ply)
+        .limit(limit)
+    )
+
+    moves = session.scalars(stmt).all()
+
+    for move in moves:
+        print(
+            f"Ply {move.ply} | "
+            f"{move.color} played {move.move} | "
+            f"Eval: {move.eval}"
+        )
 
 def main():
     with SessionLocal() as session:
         preview_players(session)
+        preview_games(session)
+
+        # Preview first game's moves
+        first_game_id = session.scalar(
+            select(Meta.game_id).limit(1)
+        )
+
+        if first_game_id:
+            preview_moves(session, first_game_id)
 
 if __name__ == '__main__':
     main()

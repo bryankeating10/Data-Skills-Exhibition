@@ -3,9 +3,9 @@ from Pipelines.evaluate import evaluate
 from Pipelines.insert import insert
 
 # Chess.com username and time frame
-USERNAME = 'noahjaskiewicz'
-START_DATE = '2020-09'
-END_DATE = '2020-09'
+USERNAME = 'bkchessmaster2'
+START_DATE = '2026-01'
+END_DATE = '2020-02'
 
 # Ingestion
 meta_df, move_df = ingest(USERNAME, START_DATE, END_DATE)
