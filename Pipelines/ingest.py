@@ -20,7 +20,7 @@ from Ingestion.download_pgn import download_pgn
 from Ingestion.metadata import MetaData
 from Ingestion.movedata import MoveData
 
-def ingest(username: str, start_date: str, end_date: str):
+def ingest(username: str, start_date: str = None, end_date: str = None):
 
     # Download PGN games
     download_pgn(username, start_date, end_date)
